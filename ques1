@@ -1,0 +1,16 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+app.post('/calculate-average', (req, res) => {
+  const numbers = req.body.numbers;
+  const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+  const average = sum / numbers.length;
+  res.json({ average });
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
